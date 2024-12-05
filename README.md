@@ -16,7 +16,7 @@ STEP:
 
 PROTOCOLLO :
   identificare i 3 comandi :
-    -> show_files (txt / json) = elenco dei file presenri sul server
+    -> showfiles (txt / json) = elenco dei file presenri sul server
     -> download nome_file (txt/json) = manda al server un txt/json e riceve byte/binario
     -> upload nome_file (txt/json) //no rinomina del file   = manda al server un txt/json e riceve un txt/json di conferma, dopo la connessione manda i byte/binario
 
