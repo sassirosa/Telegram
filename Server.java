@@ -62,7 +62,7 @@ public class Server {
 			PrintWriter writer = null;
 			String message = null;
 			try {
-				reader = new BufferedReader(new InputStreamReader(link.getInputStream()));
+				reader = new BufferedReader(new InputStreamReader(link.getInputStream()));		//vanno cambiati con i file reader e writer e buffered
 				writer = new PrintWriter(link.getOutputStream(), true);
 			}catch(IOException ex) {
 				ex.printStackTrace();
@@ -73,7 +73,7 @@ public class Server {
 			
 			while("".equalsIgnoreCase(message) == false) {
 	            try {
-					message = reader.readLine();
+					message = reader.readLine();		//cambiare come legge il messaggio ovvero il file (codice nella parte client)
 				} catch (IOException e) {
 					e.printStackTrace();
 					break;
@@ -82,7 +82,7 @@ public class Server {
 	            System.out.println("Messaggio ricevuto dal client: " + message);
 	
 	            //Verifico se il messaggio è valido e rispondo solo in quel caso
-	            if ("Hello".equalsIgnoreCase(message)) {
+	            if ("Hello".equalsIgnoreCase(message)) {						//fare i vari if in base alla richiesta letta, prima di finire fare una prova con delle risposte di file semplici
 	                // Calcola un tempo casuale basato sul numero di client attivi
 	                int delay = counter.get() * CLIENT_DELAY; // Millisecondi
 	                System.out.println("Tempo di attesa per rispondere: " + delay + " ms");
