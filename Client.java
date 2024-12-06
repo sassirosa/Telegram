@@ -99,10 +99,15 @@ public class Client {
 				    }
 				    //fine creazione e scrittura del file contenente la richiesta
 					
-				    //codice per inviare byte del file al server 
-				    while ((count = instream.read(buffer)) > 0) {
-				         out.write(buffer, 0, count);
-				         out.flush();
+					// Codice per inviare byte del file al server
+				    int totalBytesSent = 0; // Variabile per tenere traccia dei byte inviati
+				    int maxBytesToSend = 9; // Numero massimo di byte da inviare
+
+				    while (totalBytesSent < maxBytesToSend && (count = instream.read(buffer)) > 0) {
+				        int bytesToSend = Math.min(count, maxBytesToSend - totalBytesSent); // Calcola quanti byte inviare (non superare i 13)
+				        out.write(buffer, 0, bytesToSend); // Invia i byte
+				        out.flush(); // Svuota il buffer
+				        totalBytesSent += bytesToSend; // Aggiungi i byte inviati al totale
 				    }
 				    
 				    //codice per ricevere i byte dal server
@@ -117,7 +122,7 @@ public class Client {
 				case 2:
 				    //tipologia di richiesta 2: download file
 					
-					System.out.println("Inserisci il nome del file ");
+					System.out.println("Inserisci il nome del file anche la tipologia (.qualcosa)");
 					String nomefile = n.nextLine();
 					
 				    try {
@@ -132,12 +137,19 @@ public class Client {
 				        e.printStackTrace();
 				    }
 				    
-				    //codice per inviare byte del file al server 
-				    while ((count = instream.read(buffer)) > 0) {
-				         out.write(buffer, 0, count);
-				         out.flush();
+				    
+				 // Codice per inviare byte del file al server
+				    totalBytesSent = 0; // Variabile per tenere traccia dei byte inviati
+				    maxBytesToSend = 13; // Numero massimo di byte da inviare
+
+				    while (totalBytesSent < maxBytesToSend && (count = instream.read(buffer)) > 0) {
+				        int bytesToSend = Math.min(count, maxBytesToSend - totalBytesSent); // Calcola quanti byte inviare (non superare i 13)
+				        out.write(buffer, 0, bytesToSend); // Invia i byte
+				        out.flush(); // Svuota il buffer
+				        totalBytesSent += bytesToSend; // Aggiungi i byte inviati al totale
 				    }
 				    
+
 				  //codice per ricevere i byte dal server
 				    while((count=in.read(buffer)) >0){
 				        fos.write(buffer);
@@ -149,11 +161,15 @@ public class Client {
 				case 3:
 					
 					//tipologia di richiesta 3: caricare un file
+					
+					System.out.println("Inserisci il nome del file caricato, ovvero come vorresti salvarlo sul server (il nome del file non deve essere più lungo di 14 caratteri)");
+					 nomefile = n.nextLine();
+					
 				    try {
 				        
 				        FileWriter fw = new FileWriter(file);
 				        BufferedWriter bw = new BufferedWriter(fw);
-				        bw.write("upload");  
+				        bw.write("upload" + nomefile);  
 				        bw.flush();
 				        bw.close();
 				    }
@@ -161,10 +177,15 @@ public class Client {
 				        e.printStackTrace();
 				    }
 					
-				    //codice per inviare byte del file al server 
-				    while ((count = instream.read(buffer)) > 0) {
-				         out.write(buffer, 0, count);
-				         out.flush();
+				 // Codice per inviare byte del file al server
+				    totalBytesSent = 0; // Variabile per tenere traccia dei byte inviati
+				    maxBytesToSend = 14; // Numero massimo di byte da inviare
+
+				    while (totalBytesSent < maxBytesToSend && (count = instream.read(buffer)) > 0) {
+				        int bytesToSend = Math.min(count, maxBytesToSend - totalBytesSent); // Calcola quanti byte inviare (non superare i 13)
+				        out.write(buffer, 0, bytesToSend); // Invia i byte
+				        out.flush(); // Svuota il buffer
+				        totalBytesSent += bytesToSend; // Aggiungi i byte inviati al totale
 				    }
 				    
 				  //codice per ricevere i byte dal server
