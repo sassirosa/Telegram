@@ -2,16 +2,13 @@ package Telegram;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -57,7 +54,7 @@ public class Client {
 		try {
 
 				String anotherPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\download";
-				String path = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\messaggio.txt";
+				String path = "C:\\Users\\Sara\\Documents\\scuola\\twepsit";
 				
 				byte[] buffer = new byte[1024];
 			    int count ;
