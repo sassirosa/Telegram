@@ -1,12 +1,18 @@
 package Telegram;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Server {
@@ -58,11 +64,27 @@ public class Server {
 		
 		@Override
 		public void run() {
-			BufferedReader reader = null; 
+			
+			int count ;
+			byte[] buffer = new byte[1024];
+			String anotherPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\testo.txt"; //va cambiato con quello del pc in uso
+			
+			BufferedInputStream instream = null;
 			PrintWriter writer = null;
 			String message = null;
+			
+			
 			try {
-				reader = new BufferedReader(new InputStreamReader(link.getInputStream()));		//vanno cambiati con i file reader e writer e buffered
+				
+				InputStream in = link.getInputStream();
+				FileOutputStream fos = new FileOutputStream(anotherPath);
+				
+				//codice per ricevere i byte dal server
+			    while((count=in.read(buffer)) >0){
+			        fos.write(buffer); //salvato in anotherPath
+			    }
+			    fos.close();
+				
 				writer = new PrintWriter(link.getOutputStream(), true);
 			}catch(IOException ex) {
 				ex.printStackTrace();
@@ -73,16 +95,25 @@ public class Server {
 			
 			while("".equalsIgnoreCase(message) == false) {
 	            try {
-					message = reader.readLine();		//cambiare come legge il messaggio ovvero il file (codice nella parte client)
+					message = Files.readString(Paths.get("C:\\Users\\Sara\\Documents\\scuola\\twepsit\\testo.txt")); //dovrebbe leggere il contenuto del file inviato dal client
 				} catch (IOException e) {
 					e.printStackTrace();
 					break;
 				}
 	            // Legge il messaggio dal client
 	            System.out.println("Messaggio ricevuto dal client: " + message);
+	            
+	            
+	            
 	
 	            //Verifico se il messaggio è valido e rispondo solo in quel caso
-	            if ("Hello".equalsIgnoreCase(message)) {						//fare i vari if in base alla richiesta letta, prima di finire fare una prova con delle risposte di file semplici
+	            
+	            String[] arraymessage = message.split(" ");
+	            String comando = arraymessage[0];
+	            String nomefile = arraymessage[1]; //(solo il nome del file)
+	            
+	         //SHOWFILES
+	            if ("showfiles".equalsIgnoreCase(message)) {
 	                // Calcola un tempo casuale basato sul numero di client attivi
 	                int delay = counter.get() * CLIENT_DELAY; // Millisecondi
 	                System.out.println("Tempo di attesa per rispondere: " + delay + " ms");
@@ -91,6 +122,30 @@ public class Server {
 	                attendi(delay);
 	
 	                // Invia la risposta al client
+	                writer.println("World");					//lista dei file
+	                System.out.println("Risposta inviata al client: World");
+	            } else {
+	            	//Tentativo di hacking - chiudo la connessione
+	            	writer.println("You are trying to hack into private system");
+	            	writer.println("All your data are logged and they will sent to the authority");
+	            	writer.println("for investigation.");
+	            	
+	            	writer.println("You are:"+link.getRemoteSocketAddress());
+	            }
+	            
+	          //DOWNLOAD
+	            
+	             
+	            if ("download".equalsIgnoreCase(comando)) {
+	                // Calcola un tempo casuale basato sul numero di client attivi
+	                int delay = counter.get() * CLIENT_DELAY; // Millisecondi
+	                System.out.println("Tempo di attesa per rispondere: " + delay + " ms");
+	
+	                // Attende per il tempo calcolato
+	                attendi(delay);
+	
+	                // Invia la risposta al client
+	                
 	                writer.println("World");
 	                System.out.println("Risposta inviata al client: World");
 	            } else {
@@ -101,12 +156,42 @@ public class Server {
 	            	
 	            	writer.println("You are:"+link.getRemoteSocketAddress());
 	            }
+	            
+	            
+	          //UPLOAD 
+	            
+	           
+	            if ("upload".equalsIgnoreCase(comando)) {
+	                // Calcola un tempo casuale basato sul numero di client attivi
+	                int delay = counter.get() * CLIENT_DELAY; // Millisecondi
+	                System.out.println("Tempo di attesa per rispondere: " + delay + " ms");
+	
+	                // Attende per il tempo calcolato
+	                attendi(delay);
+	
+	                // Invia la risposta al client
+	                
+	                writer.println("World");
+	                System.out.println("Risposta inviata al client: World");
+	            } else {
+	            	//Tentativo di hacking - chiudo la connessione
+	            	writer.println("You are trying to hack into private system");
+	            	writer.println("All your data are logged and they will sent to the authority");
+	            	writer.println("for investigation.");
+	            	
+	            	writer.println("You are:"+link.getRemoteSocketAddress());
+	            }
+	            
+	            
+	            
 			}
+			
+			/*
         	try {
-				reader.close();
+				
 	        	writer.close();
 			} catch (IOException e) {
-			}
+			} */
         	cleanup();
         	
 		}
