@@ -16,12 +16,18 @@ STEP:
   3. Verificare la connesione stabilita tra client - server
 
 PROTOCOLLO :
+
   identificare i 3 comandi :
+  
     -> showfiles (txt / json) = elenco dei file presenri sul server
+    
     -> download nome_file (txt/json) = manda al server un txt/json e riceve byte/binario
+    
     -> upload nome_file (txt/json) //no rinomina del file   = manda al server un txt/json e riceve un txt/json di conferma, dopo la connessione manda i byte/binario
+    
 
   risposte del server:
+  
    -> a "showfiles" risponde con un elenco txt
 
 
