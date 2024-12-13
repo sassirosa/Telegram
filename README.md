@@ -1,5 +1,5 @@
 # Telegram
-COSA FA IL NOSTRO PROGETTO:
+COSA FA IL NOSTRO PROGETTO: /n
 Il client può:
   -> leggere i file disponibili sul server
   -> scaricare IL file desiderato
