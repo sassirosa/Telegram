@@ -2,21 +2,19 @@ package Telegram;
  
 import java.io.BufferedInputStream;
  
-import java.io.BufferedReader;
+
  
 import java.io.File;
  
-import java.io.FileInputStream;
+
  
 import java.io.FileOutputStream;
- 
+import java.io.FileWriter;
 import java.io.IOException;
  
 import java.io.InputStream;
  
-import java.io.InputStreamReader;
- 
-import java.io.OutputStream;
+
  
 import java.io.PrintWriter;
  
@@ -28,7 +26,7 @@ import java.nio.file.Files;
  
 import java.nio.file.Paths;
  
-import java.util.concurrent.atomic.AtomicInteger;
+
  
 public class Server {
  
@@ -104,20 +102,22 @@ public class Server {
  
 		public void run() {
  
-			int count ;
+			int count = 0 ;
  
 			byte[] buffer = new byte[1024];
  
-			//String anotherPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\testo.txt"; //va cambiato con quello del pc in uso
+			String anotherPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\informazioni\\info.txt"; //va cambiato con quello del pc in uso
  
 			//String anotherPath = "C:\\Users\\rossi.sara\\Documents\\informazioni\\info.txt";
 			
-			String anotherPath = "e:\\utenti\\rossi.sara\\Documents\\informazioni\\info.txt";
+			//String anotherPath = "e:\\utenti\\rossi.sara\\Documents\\informazioni\\info.txt";
  
+			
+			
 			BufferedInputStream instream = null;
  
 			PrintWriter writer = null;
- 
+			
 			String message = null;
  
  
@@ -128,6 +128,8 @@ public class Server {
 				InputStream in = link.getInputStream();
  
 				FileOutputStream fos = new FileOutputStream(salvato);
+				
+				
  
 				//codice per ricevere i byte dal server
  
@@ -141,6 +143,8 @@ public class Server {
  
 		                // Scrivi i byte nel file
 		                fos.write(buffer, 0, bytesToWrite);
+		                
+		                System.out.println("Il server sta scrivendo il file");
  
 		                totalBytesReceived += bytesToWrite; // Aggiungi i byte ricevuti al totale
 		                System.out.println("Byte ricevuti e scritti nel file: " + bytesToWrite);
@@ -161,16 +165,18 @@ public class Server {
 				return;
  
 			}
+			
+			System.out.println("Il server è arrivato prima della condizione while");
  
 			while("".equalsIgnoreCase(message) == false) {
  
 	            try {
  
-					//message = Files.readString(Paths.get("C:\\Users\\Sara\\Documents\\scuola\\twepsit\\testo.txt")); //dovrebbe leggere il contenuto del file inviato dal client
+					message = Files.readString(Paths.get("C:\\Users\\Sara\\Documents\\scuola\\twepsit\\telegram\\miofile.txt")); //dovrebbe leggere il contenuto del file inviato dal client
  
 					//message = Files.readString(Paths.get("C:\\Users\\rossi.sara\\Documents\\informazioni\\info.txt"));
 					
-					message = Files.readString(Paths.get("e:\\utenti\\rossi.sara\\Documents\\informazioni\\info.txt"));
+					//message = Files.readString(Paths.get("e:\\utenti\\rossi.sara\\Documents\\informazioni\\info.txt"));
  
 					System.out.println("Ricevuto il messaggio dal client");
  
@@ -186,12 +192,21 @@ public class Server {
  
 	            System.out.println("Messaggio ricevuto dal client: " + message);
  
- 
+	            
+	            
+	            
  
 	            //Verifico se il messaggio è valido e rispondo solo in quel caso
  
 	            String[] arraymessage = message.split(" ");
- 
+	            String comando = null;
+	            String nomefile = null;
+	            
+	            if (arraymessage.length > 1) {
+	               comando = arraymessage[0];
+	                nomefile = arraymessage[1];
+	                // Continua con il codice
+	            } else {
 	            
  
 	         //SHOWFILES
@@ -228,11 +243,9 @@ public class Server {
  
 	            }
 	            
-	            //da qui in poi è necessario ricavare il nome del file dal comando inserito dal client
+	            }
 	            
-	            String comando = arraymessage[0];
- 
-	            String nomefile = arraymessage[1]; //(solo il nome del file)
+	           
  
 	          //DOWNLOAD
 	            
@@ -305,21 +318,28 @@ public class Server {
  
 	            }
  
+	           //ripulisco il file
+	            
+				
+				try {
+					File miofile = new File ("C:\\Users\\Sara\\Documents\\scuola\\twepsit\\telegram\\miofile.txt");
+					
+					FileWriter fw = new FileWriter(miofile);
+					
+					fw.write("");
+					
+					System.out.println("ho pulito il file");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            
+	            
+			}//chiusura while 
  
-			}
- 
-			/*
- 
-        	try {
- 
-	        	writer.close();
- 
-			} catch (IOException e) {
- 
-			} */
+			writer.close(); 
  
         	cleanup();
- 
 		}
  
 	}
