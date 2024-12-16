@@ -2,9 +2,13 @@
 COSA FA IL NOSTRO PROGETTO:
 
 Il client può:
+
   -> leggere i file disponibili sul server
+  
   -> scaricare IL file desiderato
+  
   -> caricare un SINGOLO file alla volta
+  
 
 Il server può:
   -> salvare / scaricarsi i file
