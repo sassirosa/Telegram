@@ -1,9 +1,9 @@
 # Telegram
 ## Contenuti
-1. [Informazioni generali](#general-info)
-2. [Risorse](#resources)
-3. [Progettazione](#project)
-4. [Utilizzo](#howto)
+1. [Informazioni generali](#informazioni-generali)
+2. [Risorse](#risorse)
+3. [Progettazione](#progettazione)
+4. [Utilizzo](#utilizzo)
 5. [FAQs](#faqs)
 ### Informazioni Generali
 ***
@@ -18,7 +18,10 @@ A list of technologies used within the project:
 * [Library name](https://example.com): Version 1234
 ## Progettazione
 ***
-A little intro about the installation.
+Il nostro team ha iniziato dal definire il protocollo per la connessione. Successivamente ha definito il tipo di pacchetto e infine ha verificato la connessione tra il client e il server per assicurarsi che il protocollo progettato funzionasse.
+***
+Il protocollo è stato definito nel seguente modo:
+
 ```
 $ git clone https://example.com
 $ cd ../path/to/the/file
