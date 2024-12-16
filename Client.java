@@ -88,21 +88,26 @@ public class Client {
  
 				//String salvoPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\download";
  
-				//String path = "C:\\Users\\Sara\\Documents\\scuola\\twepsit";
+				String path = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\telegram";
  
 				//String path = "C:\\Users\\rossi.sara\\Documents\\telegram";
 				
-				String path = "e:\\utenti\\rossi.sara\\Documents\\telegram";
+				//String path = "e:\\utenti\\rossi.sara\\Documents\\telegram";
+				
+				//---------------------------------------------------------------------------------
+				//file con le risposte del server
  
 				//String pathricezione = "C:\\Users\\rossi.sara\\Documents\\informazioni\\info.txt";
 				
-				String pathricezione= "e:\\utenti\\rossi.sara\\Documents\\informazioni\\info.txt";
+				//String pathricezione= "e:\\utenti\\rossi.sara\\Documents\\informazioni\\info.txt";
+				
+				String pathricezione = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\informazioni\\info.txt";
  
 				byte[] buffer = new byte[1024];
  
 			    int count ;
  
-			    File file = new File(path, "miofile.txt");
+			    File file = new File(path, "miofile.txt"); //file dove scriviamo il comando
  
 				OutputStream out = link.getOutputStream();
  
