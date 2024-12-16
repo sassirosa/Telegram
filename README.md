@@ -38,9 +38,9 @@ Step:
 ***
 Il protocollo definisce 3 comandi ed è stato definito nel seguente modo:
 ```
--> showfiles = richiede l'elenco dei file presenti sul server
--> download <nome_file> = richiede il file menzionato
--> upload <nome_file> = richiede di caricare (sul server) il file menzionato
+-> showfiles = richiesta dell'elenco dei file presenti sul server
+-> download <nome_file> = richiesta del file menzionato
+-> upload <nome_file> = richiesta di caricare (sul server) il file menzionato
 ```
 Il tipo di pacchetto è **File**.
 Questo significa che tutte le richieste (o comandi) effettuati dal client sono trasmessi al server sottoforma di byte. Lo stesso vale per le risposte del server al client. 
