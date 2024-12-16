@@ -20,15 +20,20 @@ A list of technologies used within the project:
 ***
 Il nostro team ha iniziato dal definire il protocollo per la connessione. Successivamente ha definito il tipo di pacchetto e infine ha verificato la connessione tra il client e il server per assicurarsi che il protocollo progettato funzionasse.
 ***
-Il protocollo è stato definito nel seguente modo:
-
+Il protocollo definisce 3 comandi ed è stato definito nel seguente modo:
 ```
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
+-> showfiles = richiede l'elenco dei file presenti sul server
+-> download <nome_file> = richiede il file menzionato
+-> upload <nome_file> = richiede di caricare (sul server) il file menzionato
 ```
-Side information: To use the application in a special environment use ```lorem ipsum``` to start
+Il tipo di pacchetto è **File**.
+Questo significa che tutte le richieste (o comandi) effettuati dal client sono trasmessi al server sottoforma di byte. Lo stesso vale per le risposte del server al client. 
+Quindi le risposte del client ai diversi comandi saranno:
+```
+-> showfiles = restutuzione dei file presenti scrivendo solo i loro nomi all'interno di un nuovo file (chiamato info.txt)
+-> download <nome_file> = Invio dei byte del file menzionato
+-> upload <nome_file> = Ricezione dei byte dal client e salvataggio nella directory dedicata allo storage di file
+```
 ## Utilizzo
 ***
 Give instructions on how to collaborate with your project.
