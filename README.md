@@ -44,7 +44,7 @@ Il protocollo definisce 3 comandi ed è stato definito nel seguente modo:
 ```
 Il tipo di pacchetto è **File**.
 Questo significa che tutte le richieste (o comandi) effettuati dal client sono trasmessi al server sottoforma di byte. Lo stesso vale per le risposte del server al client. 
-Quindi le risposte del client ai diversi comandi saranno:
+Le risposte del client ai diversi comandi sono:
 ```
 -> showfiles = restutuzione dei file presenti scrivendo solo i loro nomi all'interno di un nuovo file (chiamato info.txt)
 -> download <nome_file> = Invio dei byte del file menzionato
