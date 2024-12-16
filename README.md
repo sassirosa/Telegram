@@ -11,8 +11,11 @@ Il client può:
   
 
 Il server può:
+
   -> salvare / scaricarsi i file
+  
   -> restituire una lista dei file che ha scaricato
+  
 
 STEP:
   1. Definire il protocollo per la connessione
