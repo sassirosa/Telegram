@@ -18,7 +18,23 @@ A list of technologies used within the project:
 * [Library name](https://example.com): Version 1234
 ## Progettazione
 ***
-Il nostro team ha iniziato dal definire il protocollo per la connessione. Successivamente ha definito il tipo di pacchetto e infine ha verificato la connessione tra il client e il server per assicurarsi che il protocollo progettato funzionasse.
+Step:
+1. Definizione del protocollo per la connessione.
+2. Definizione del tipo di pacchetto.
+3. Verifica della connessione tra il client e il server per assicurarsi che il protocollo sia stato progettato correttamente.
+4. Risoluzione di diverse problematiche.
+5. Sviluppo del primo comando lato client.
+6. Sviluppo del secondo comando lato client.
+7. Sviluppo del terzo comando lato client.
+8. Risoluzione di nuove problematiche di connesione.
+9. Sviluppo del primo comando lato server.
+***
+--------------------------------------- -> noi siamo qui <- ---------------------------------------------
+***
+10. Sviluppo del secondo comando lato server.
+11. Sviluppo del terzo comando lato server.
+12. Ultimi cintrolli e revisioni
+   
 ***
 Il protocollo definisce 3 comandi ed è stato definito nel seguente modo:
 ```
