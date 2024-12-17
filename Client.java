@@ -65,7 +65,8 @@ public class Client {
     private static void sendFile(Socket link, String filePath, String command) {
         try (FileInputStream fileStream = new FileInputStream(new File(filePath));
              BufferedInputStream instream = new BufferedInputStream(fileStream);
-             OutputStream out = link.getOutputStream()) {
+            ) {
+        	 OutputStream out = link.getOutputStream();
 
             byte[] buffer = new byte[1024];
             int count;
