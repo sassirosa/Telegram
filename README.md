@@ -10,8 +10,6 @@
 
 4. [Utilizzo](#utilizzo) 
 
-5. [FAQs](#faqs) 
-
 ### Informazioni Generali 
 
 Abbiamo a disposizione un Client che nel momento in cui si crea la connessione con il Server può scegliere tra tre azioni da dover eseguire in base alla nostra necessità: 
@@ -23,10 +21,6 @@ Eseguire il download di un file
 Mettere a disposizione e quindi aggiungere al Server un nuovo file 
 
 Successivamente il Server riceve la richiesta dal Client e va ad esaudire quello che è il comando immesso dal Client. 
-
-### Screenshot 
-
-![Image text](https://www.united-internet.de/fileadmin/user_upload/Brands/Downloads/Logo_IONOS_by.jpg) 
 
 ## Risorse 
 
@@ -112,46 +106,14 @@ Le risposte del client ai diversi comandi sono:
 
 ## Utilizzo 
 
-*** 
+Ecco i vari step per utilizzare il nostro programma: 
 
-Give instructions on how to collaborate with your project. 
+``` 
 
-> Maybe you want to write a quote in this part.  
+Aprire Eclipse e il progetto con le varie classi. 
 
-> It should go over several rows? 
+Creare due console, nella prima ci avviamo il Server e nella seconda avviamo il Client. 
 
-> This is how you do it. 
+Una volta avviato il Client viene creata la connessione tra i due e quindi nella console del Client (seconda console) possiamo inserire il comando che vogliamo eseguire. 
 
-## FAQs 
-
-*** 
-
-A list of frequently asked questions 
-
-1. **This is a question in bold** 
-
-Answer of the first question with _italic words_.  
-
-2. __Second question in bold__  
-
-To answer this question we use an unordered list: 
-
-* First point 
-
-* Second Point 
-
-* Third point 
-
-3. **Third question in bold** 
-
-Answer of the third question with *italic words*. 
-
-4. **Fourth question in bold** 
-
-| Headline 1 in the tablehead | Headline 2 in the tablehead | Headline 3 in the tablehead | 
-
-|:--------------|:-------------:|--------------:| 
-
-| text-align left | text-align center | text-align right | 
-
- 
+Nelle due console vediamo i risultati delle varie istruzioni eseguite dal codice. 
