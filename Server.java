@@ -2,15 +2,20 @@ package Telegram;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+import Telegram.Client.Command;
+import Telegram.Client.Constants;
 
 public class Server {
 
@@ -152,17 +157,48 @@ public class Server {
 
 			// Invia la risposta al client
 
-			writer.println("World"); // lista dei file
+			writer.println("5World"); // lista dei file
 
 			System.out.println("Risposta inviata al client: World");	
 		}
+		
+		private void commandDownloadFile() {
+			
+			 try (FileInputStream fileStream = new FileInputStream(new File("C:\\Users\\rossi.sara\\Documents\\informazioni\\dolce.txt"));
+		             BufferedInputStream instream = new BufferedInputStream(fileStream);
+		             ) {
+		        	OutputStream out = link.getOutputStream();
+
+		            PrintWriter writer = new PrintWriter(out, true);
+		          
+		            //è stato divertente provarci...ci rivedremo....fose....
+
+		            byte[] buffer = new byte[Constants.BUFFER_SIZE];
+		            int count;
+		            int maxBytesToSend = 9;
+		            int totalBytesSent = 0;
+
+		            while (totalBytesSent < maxBytesToSend && (count = instream.read(buffer)) > 0) {
+		                int bytesToSend = Math.min(count, maxBytesToSend - totalBytesSent);
+		                out.write(buffer, 0, bytesToSend);
+		                out.flush();
+		                totalBytesSent += bytesToSend;
+		                System.out.println("Sto inviando il file al client");
+		            }
+
+		        } catch (IOException e) {
+		            e.printStackTrace();
+		        }
+		    }
+			
+		
 			
 		
 		private void executeCommand(String cmd, String[] args) {
 			if ("showfiles".equalsIgnoreCase(cmd)) {
 				commandShowFiles();
 			}else if("download".equalsIgnoreCase(cmd)) {
-				//crea la funzione
+				commandDownloadFile();
 			}
 			//crea una funzione per ogni tipo di comando
 		}
@@ -170,7 +206,8 @@ public class Server {
 		private String doReadCommand() {
 			byte[] buffer = new byte[1024];
 			int count = 0;
-			String anotherPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\telegram\\miofile.txt";
+			//String anotherPath = "C:\\Users\\Sara\\Documents\\scuola\\twepsit\\telegram\\miofile.txt";
+			String anotherPath = "C:\\Users\\rossi.sara\\Documents\\telegram\\miofile.txt";
 			// va cambiato
 			// con quello
 			// del pc in uso
@@ -223,7 +260,7 @@ public class Server {
 
 			try {
 
-				String message = Files.readString(Paths.get("C:\\Users\\Sara\\Documents\\scuola\\twepsit\\telegram\\miofile.txt")); 
+				String message = Files.readString(Paths.get("C:\\Users\\rossi.sara\\Documents\\telegram\\miofile.txt")); 
 																														// dovrebbe
 																														// leggere
 																														// il
